@@ -12,13 +12,12 @@
   [n d]
     (zero? (mod n d)))
 
-;Really don't like the nested ifs in this implementation
 (defn test-factors 
   "Tests if a number is evenly divisible by any of a collection of factors"
   [n [first-factor & more]]
-    (if (nil? first-factor) false
-              (if (is-multiple n first-factor) true
-                  (test-factors n more))))
+    (cond (nil? first-factor) false
+          (is-multiple n first-factor) true
+          :else (test-factors n more)))
 
 (defn multiples
   "Returns the multiples of the factors in the given collection"
